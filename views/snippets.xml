@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+    <template id="buy_now_editor" inherit_id="website.assets_editor" name="Sales Page Resources">
+        <xpath expr="/t" position="inside">
+            <script type="text/javascript" src="/website_popup/static/src/js/website.popup.editor.js" />
+        </xpath>
+    </template>
+
+    <template id="website_popup_options" name="Popup Options" inherit_id="website.snippet_options">
+        <xpath expr="//div" position="after">
+            <div data-js='popup_button'
+                data-selector=".popup_button"
+                data-drop-in="div">
+            </div>
+        </xpath>
+    </template>
+
+<template id="popup_navbar" inherit_id="website.snippets" name="Popup Navbar">
+    <xpath expr="//div[@id='snippet_structure']/div[@class='o_panel_body']" position="inside">
+        <t t-snippet="website_popup.s_popup" t-thumbnail="/website_popup/static/src/img/ui/snippet_thumb_popup.jpg"/>
+    </xpath>    
+</template>
+
+<template id="s_popup" name="Popup Campaign">
+    <section class="popup_button">
+            <div style="text-align:center;">
+                <a id="popup_button" href="#iamapopup" class="btn btn-primary btn-lg o_default_snippet_text" contenteditable="true">Click Me</a>
+            </div>
+            <!-- Popup Window -->
+            <div class="modal fade" id="oe_generic_popup_modal">
+                <div class="modal-dialog modal-content" style="min-height:200px;">
+                    <div class="modal-body" id="pop_html">
+                        
+                            <h2 style="text-align:center;">Please fill in the form below</h2>
+        <form action="/popup/campaign" method="POST" class="form-horizontal mt32" enctype="multipart/form-data">
+
+                            <input type="hidden" name="popup_campaign_id" id="popup_campaign_id" value="0"/>
+                            <input type="hidden" name="return_url" id="popup_return_url" value=""/>
+                            <div class="form-group">
+                                <label for="name" class="control-label col-md-2">Name</label>
+                                <div class="col-md-10">
+                                    <input type="text" name="name" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+		                <label for="email" class="control-label col-md-2">Email</label>
+		                <div class="col-md-10">
+		                    <input type="text" name="email" class="form-control"/>
+                                </div>
+                            </div>
+                                <input type="submit" class="btn btn-primary btn-lg" value="Submit"/>
+                            
+                            </form>
+                        
+                    </div>
+                </div>
+            </div>
+            <!-- End Popup Window -->
+    </section>
+</template>
+
+  </data>
+</openerp>
